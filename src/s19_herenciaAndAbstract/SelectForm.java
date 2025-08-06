@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SelectForm extends ElementoForm {
 
-    private List<Opcion> opciones;
+    public List<Opcion> opciones;
 
     public SelectForm(String nombre) {
         super(nombre);
@@ -35,6 +35,7 @@ public class SelectForm extends ElementoForm {
                 .append("'");
             if(opcion.isSelected()) {
                 html.append(" selected");
+                this.valor = opcion.getValor();
             }
             html.append(">");
             html.append(opcion.getNombre())

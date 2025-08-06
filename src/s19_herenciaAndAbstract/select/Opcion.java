@@ -1,16 +1,15 @@
 package s19_herenciaAndAbstract.select;
 
 public class Opcion {
-    private String valor;
-    private String nombre;
-    private boolean selected;
+    public String valor;
+    public String nombre;
+    public boolean selected;
 
     public Opcion() {}
 
-    public Opcion(String valor, String nombre, boolean selected) {
+    public Opcion(String valor, String nombre) {
         this.valor = valor;
         this.nombre = nombre;
-        this.selected = selected;
     }
 
     public String getValor() {
