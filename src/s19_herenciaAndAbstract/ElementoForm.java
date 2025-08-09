@@ -1,5 +1,6 @@
 package s19_herenciaAndAbstract;
 
+import s19_herenciaAndAbstract.validador.LargoValidador;
 import s19_herenciaAndAbstract.validador.Validador;
 
 import java.util.ArrayList;
@@ -41,7 +42,11 @@ abstract public class ElementoForm {
     public boolean esValido() {
         for(Validador v : validadores) {
             if(!v.esValido(this.valor)) {
-                this.errores.add(v.getMensaje());
+                if(v instanceof LargoValidador) {
+                    this.errores.add(((LargoValidador) v).getMensajeFormateado(this.nombre));
+                } else {
+                    this.errores.add(String.format(v.getMensaje(), this.nombre));
+                }
             }
         }
 
