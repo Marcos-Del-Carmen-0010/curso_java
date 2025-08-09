@@ -1,22 +1,32 @@
 package s19_herenciaAndAbstract;
 
 import s19_herenciaAndAbstract.select.Opcion;
+import s19_herenciaAndAbstract.validador.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class EjemploForm {
     public static void main(String[] args) {
-        InputForm username = new InputForm("username");
-        InputForm password = new InputForm("clave", "password");
-        InputForm email = new InputForm("email", "email");
-        InputForm edad = new InputForm("edad", "number");
+        InputForm username = new InputForm("");
+        username.addValidador(new RequeridoValidador());
 
+        InputForm password = new InputForm("clave", "password");
+        password.addValidador(new RequeridoValidador())
+                .addValidador(new LargoValidador(6, 12));
+
+        InputForm email = new InputForm("email", "email");
+        email.addValidador(new RequeridoValidador())
+                .addValidador(new EmailValidador());
+
+        InputForm edad = new InputForm("edad", "number");
+        edad.addValidador(new NumeroValidador());
 
         TextareaForm experiencia = new TextareaForm("exp", 5, 9);
 
         SelectForm lenguaje = new SelectForm("lenguaje");
+        lenguaje.addValidador(new NoNuloValidador());
+
         Opcion java = new Opcion("1", "Java");
 
         lenguaje.addOpcion(java);
@@ -57,6 +67,15 @@ public class EjemploForm {
         // }
         elementos.forEach(e -> {
             System.out.println(e.dibujarHTML());
+        });
+
+        elementos.forEach(e -> {
+            if(!e.esValido()) {
+                System.out.println(e);
+                e.getErrores().forEach(error -> {
+                    System.out.println(e.getNombre() + ": " + error);
+                });
+            }
         });
     }
 }
