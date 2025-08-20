@@ -1,4 +1,4 @@
-package s21_pooCRUDInterface;
+package s21_pooCRUDInterface.genericsclass;
 
 import s21_pooCRUDInterface.Modelo.Cliente;
 import s21_pooCRUDInterface.Modelo.ClientePremium;

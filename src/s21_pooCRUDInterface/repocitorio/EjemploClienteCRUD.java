@@ -1,17 +1,13 @@
-package s21_pooCRUDInterface;
+package s21_pooCRUDInterface.repocitorio;
 
 import s21_pooCRUDInterface.Modelo.Cliente;
 import s21_pooCRUDInterface.catalogos.Direccion;
-import s21_pooCRUDInterface.repocitorio.IHome;
-import s21_pooCRUDInterface.repocitorio.MetothsCRUD;
-import s21_pooCRUDInterface.repocitorio.OrdenableCRUD;
-import s21_pooCRUDInterface.repocitorio.PaginableCRUD;
 
 import java.util.List;
 
-public class EjemploCRUD {
+public class EjemploClienteCRUD {
     public static void main(String[] args) {
-        IHome repo = new ClienteListCRUD();
+        IHome<Cliente> repo = new ClienteListCRUD();
 
         repo.crear(new Cliente("Marcos","Del Carmen")); // [0]
         repo.crear(new Cliente("Pedro","Ramos"));       // [1]

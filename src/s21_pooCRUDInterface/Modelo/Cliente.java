@@ -1,26 +1,27 @@
 package s21_pooCRUDInterface.Modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Cliente {
-    private Integer id;
+public class Cliente extends BaseEntity {
+    //private Integer id;
     private String nombre;
     private String apellido;
     private static int ultimoId;
 
-    public Cliente() {
+    /*public Cliente() {
         this.id = ++ultimoId;
-    }
+    }*/
 
     public Cliente(String nombre, String apellido) {
-        this();
+        super();
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    // public Integer getId() {
+    //    return id;
+    //}
 
     public void setId(Integer id) {
         this.id = id;
@@ -47,17 +48,5 @@ public class Cliente {
         return "id: " + this.id + "\n" +
                 "nombre: " + this.nombre + "\n" +
                 "apellido: " + this.apellido;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return Objects.equals(id, cliente.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }

@@ -1,14 +1,11 @@
 package s21_pooCRUDInterface.repocitorio;
-
-import s21_pooCRUDInterface.Modelo.Cliente;
-
 import java.util.List;
 
-public interface MetothsCRUD {
-    List<Cliente> listar();
-    Cliente buscar(int id);
-    void crear(Cliente cliente);
-    void editar(Cliente cliente);
+public interface MetothsCRUD<T> {
+    List<T> listar();
+    T buscar(int id);
+    void crear(T cliente);
+    void editar(T cliente);
     void eliminar(int id);
 
 }
