@@ -2,29 +2,32 @@ package s21_pooCRUDInterface.repocitorio;
 
 import s21_pooCRUDInterface.Modelo.BaseEntity;
 import s21_pooCRUDInterface.Modelo.Cliente;
-import s21_pooCRUDInterface.catalogos.Direccion;
+import s21_pooCRUDInterface.excepciones.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbtractaListCRUD<T extends BaseEntity> implements IHome<T> {
 
-    public List<T> listaClientes;
+    public List<T> listaEntidades;
 
     public AbtractaListCRUD() {
-        this.listaClientes = new ArrayList<T>();
+        this.listaEntidades = new ArrayList<T>();
     }
 
     @Override
     public List<T> listar() {
-        return this.listaClientes;
+        return this.listaEntidades;
     }
 
 
     @Override
-    public T buscar(int id) {
+    public T buscar(int id) throws LecturaAccesoDatoException {
+        if (id <= 0) {
+            throw new LecturaAccesoDatoException("Id invalido tiene que ser mayor a 0");
+        }
         T entidad = null;
-        for (T ent : this.listaClientes) {
+        for (T ent : this.listaEntidades) {
             if(ent.getId() != null && ent.getId() == id) {
                 entidad = ent;
                 break;
@@ -34,19 +37,25 @@ public abstract class AbtractaListCRUD<T extends BaseEntity> implements IHome<T>
     }
 
     @Override
-    public void crear(T t) {
-        this.listaClientes.add(t);
+    public void crear(T t) throws EscrituraAccesoDatoException, RegistroDuplicadoAccesoException {
+        if (t == null) {
+            throw new EscrituraAccesoDatoException("No puedes crear un objeto nulo");
+        }
+        if (this.listaEntidades.contains(t)) {
+            throw new RegistroDuplicadoAccesoException("Excepción el objeto con id " + t.getId() + " ya existe");
+        }
+        this.listaEntidades.add(t);
     }
 
     @Override
-    public void eliminar(int id) {
+    public void eliminar(int id) throws LecturaAccesoDatoException {
         T cli = this.buscar(id);
-        this.listaClientes.remove(cli);
+        this.listaEntidades.remove(cli);
     }
 
     @Override
     public List<T> listar(int desde, int hasta) {
-        return this.listaClientes.subList(desde, hasta);
+        return this.listaEntidades.subList(desde, hasta);
     }
 
 
@@ -62,6 +71,6 @@ public abstract class AbtractaListCRUD<T extends BaseEntity> implements IHome<T>
 
     @Override
     public int getTotal(){
-        return this.listaClientes.size();
+        return this.listaEntidades.size();
     }
 }

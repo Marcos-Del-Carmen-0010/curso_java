@@ -3,6 +3,7 @@ package s21_pooCRUDInterface.repocitorio;
 import s21_pooCRUDInterface.Modelo.BaseEntity;
 import s21_pooCRUDInterface.Modelo.Cliente;
 import s21_pooCRUDInterface.catalogos.Direccion;
+import s21_pooCRUDInterface.excepciones.LecturaAccesoDatoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class ClienteListCRUD<T extends BaseEntity> extends AbtractaListCRUD<Cliente> {
 
     @Override
-    public void editar(Cliente cliente) {
+    public void editar(Cliente cliente) throws LecturaAccesoDatoException {
         Cliente cli = this.buscar(cliente.getId());
         cli.setNombre(cliente.getNombre());
         cli.setApellido(cliente.getApellido());
@@ -18,7 +19,7 @@ public class ClienteListCRUD<T extends BaseEntity> extends AbtractaListCRUD<Clie
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
-        List<Cliente> listaOrdenada = new ArrayList<>(this.listaClientes);
+        List<Cliente> listaOrdenada = new ArrayList<>(this.listaEntidades);
         listaOrdenada.sort((o1, o2) ->  {
             int resultado = 0;
 

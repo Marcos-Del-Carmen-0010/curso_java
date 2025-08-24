@@ -4,6 +4,7 @@ import s21_pooCRUDInterface.Modelo.BaseEntity;
 import s21_pooCRUDInterface.Modelo.Cliente;
 import s21_pooCRUDInterface.Modelo.Producto;
 import s21_pooCRUDInterface.catalogos.Direccion;
+import s21_pooCRUDInterface.excepciones.LecturaAccesoDatoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class ProductoListCRUD<T extends BaseEntity> extends AbtractaListCRUD<Producto> {
 
     @Override
-    public void editar(Producto cliente) {
+    public void editar(Producto cliente) throws LecturaAccesoDatoException {
         Producto cli = this.buscar(cliente.getId());
         cli.setDescripcion(cliente.getDescripcion());
         cli.setPrecio(cliente.getPrecio());
@@ -19,7 +20,7 @@ public class ProductoListCRUD<T extends BaseEntity> extends AbtractaListCRUD<Pro
 
     @Override
     public List<Producto> listar(String campo, Direccion dir) {
-        List<Producto> listaOrdenada = new ArrayList<>(this.listaClientes);
+        List<Producto> listaOrdenada = new ArrayList<>(this.listaEntidades);
         listaOrdenada.sort((o1, o2) ->  {
             int resultado = 0;
 
