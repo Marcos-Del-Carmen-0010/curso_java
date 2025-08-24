@@ -6,6 +6,7 @@ import s21_pooCRUDInterface.catalogos.Direccion;
 import s21_pooCRUDInterface.excepciones.AccesoDatoException;
 import s21_pooCRUDInterface.excepciones.EscrituraAccesoDatoException;
 import s21_pooCRUDInterface.excepciones.LecturaAccesoDatoException;
+import s21_pooCRUDInterface.excepciones.RegistroDuplicadoAccesoException;
 
 import java.util.List;
 
@@ -59,8 +60,10 @@ public class EjemploProductoCRUD {
         } catch (EscrituraAccesoDatoException ead) {
             System.out.println("Escritura: "+ ead.getMessage());
             ead.printStackTrace();
-        }
-        catch (AccesoDatoException ad) {
+        } catch (RegistroDuplicadoAccesoException rda) {
+            System.out.println("Registro duplicado: "+ rda.getMessage());
+            rda.printStackTrace();
+        } catch (AccesoDatoException ad) {
             System.out.println("Acceso: "+ ad.getMessage());
             ad.printStackTrace();
         }
