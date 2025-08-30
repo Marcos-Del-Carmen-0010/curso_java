@@ -1,4 +1,4 @@
-package s24_EstructuraDeDatos;
+package s24_EstructuraDeDatos.list;
 
 import s24_EstructuraDeDatos.modelos.Alumno;
 
