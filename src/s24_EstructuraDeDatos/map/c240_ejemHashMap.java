@@ -59,13 +59,30 @@ public class c240_ejemHashMap {
 
         System.out.println("....::::::: ATRIBUTOS Y VALORES USANDO MAP.ENTRY");
         for(Map.Entry<String, Object> entry : persona.entrySet()) {
-            System.out.println(entry.getKey() + "=>" + entry.getValue());
+            Object valor = entry.getValue();
+            if (valor instanceof Map) {
+                for (Map.Entry<String, Object> entry2 : persona.entrySet()) {
+                    System.out.println(entry2.getKey() + "=>" + entry2.getValue());
+                }
+            } else {
+                System.out.println(entry.getKey() + "=>" + entry.getValue());
+            }
         }
 
         System.out.println("....::::::: ATRIBUTOS Y VALORES USANDO METODO VALUES");
-        for (Object llave: persona.values()) {
-            Object valor = persona.get(llave);
-            System.out.println(llave + "=>" + valor);
+        // for (Object llave: persona.values()) {
+        for(Map.Entry<String, Object> llave : persona.entrySet()) {
+            // Object valor = persona.get(llave);
+            Object valor = llave.getValue();
+            if(valor instanceof Map) {
+                Map<String, Object> personaMap = (Map<String, Object>) valor;
+                System.out.println("Pais => " + personaMap.get("pais"));
+                System.out.println("Estado => " + personaMap.get("estado"));
+                System.out.println("Ciudad => " + personaMap.get("ciudad"));
+            } else {
+                // System.out.println(llave + "=>" + valor);
+                System.out.println(llave.getKey() + "=>" + llave.getValue());
+            }
         }
 
         System.out.println("....::::::: ATRIBUTOS Y VALORES USANDO EXPRESION LAMDA");
