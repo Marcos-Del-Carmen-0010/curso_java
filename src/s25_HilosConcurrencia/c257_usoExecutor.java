@@ -10,7 +10,6 @@ public class c257_usoExecutor {
         ExecutorService executor = Executors.newCachedThreadPool();
 
         Runnable task = () -> {
-
             try {
                 System.out.println("Iniciamos con el hilo " + Thread.currentThread().getName());
                 TimeUnit.SECONDS.sleep(5);
