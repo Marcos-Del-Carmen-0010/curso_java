@@ -4,7 +4,11 @@ import java.util.concurrent.*;
 
 public class e28_HiloNumerico {
     public static void main(String[] args) {
-        String[] letras  = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        String[] letras  = {
+                "A", "B", "C", "D", "E", "F", "G", "H", "I",
+                "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q",
+                "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+        };
         ExecutorService executor = Executors.newFixedThreadPool(1);
 
         System.out.println("Iniciando thread de numeros");
