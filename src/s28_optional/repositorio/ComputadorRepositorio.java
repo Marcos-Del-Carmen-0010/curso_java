@@ -13,7 +13,7 @@ public class ComputadorRepositorio implements Repositorio<Computador> {
 
     public ComputadorRepositorio() {
         this.computadores = new ArrayList<>();
-        this.computadores.add(new Computador("Asus", "Strix G512"));
+        this.computadores.add(new Computador("Asus ROG", "Strix G512"));
         this.computadores.add(new Computador("MacBook Pro", "MVCK21"));
     }
 
