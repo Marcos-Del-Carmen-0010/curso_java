@@ -4,7 +4,7 @@
  * dividirlos en 2, para finalmente devolver la suma total de todos ellos usando el operador terminal reduce.
  * El resultado debería ser 2250.0
  * */
-package s27_Streams;
+package s27_Streams.ejercicios;
 
 import java.util.stream.IntStream;
 
