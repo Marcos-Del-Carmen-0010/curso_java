@@ -2,6 +2,8 @@ package s28_optional.repositorio;
 
 import s28_optional.interfaces.Repositorio;
 import s28_optional.models.Computador;
+import s28_optional.models.Fabricante;
+import s28_optional.models.Procesador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,10 @@ public class ComputadorRepositorio implements Repositorio<Computador> {
 
     public ComputadorRepositorio() {
         this.computadores = new ArrayList<>();
-        this.computadores.add(new Computador("Asus ROG", "Strix G512"));
+        Procesador proc = new Procesador("I9-98880H", new Fabricante("Intel"));
+        Computador asus = new Computador("Asus ROG", "Strix G512");
+        asus.setProcesador(proc);
+        this.computadores.add(asus);
         this.computadores.add(new Computador("MacBook Pro", "MVCK21"));
     }
 
